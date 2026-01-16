@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONE BLISS - Premium Homestay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #c9a962;
+            --gold-light: #e8d5a3;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --text-dark: #2d2d2d;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--white);
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(201, 169, 98, 0.03) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .floating-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Header */
+        .header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(201, 169, 98, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), var(--gold-light));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--primary);
+            box-shadow: 0 10px 30px rgba(201, 169, 98, 0.3);
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-text span {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+        }
+
+        .datetime {
+            text-align: right;
+        }
+
+        .time {
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--white);
+            letter-spacing: 2px;
+        }
+
+        .date {
+            font-size: 16px;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            grid-column: span 2;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(201, 169, 98, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .welcome-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--gold-light));
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .welcome-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .welcome-section h2 span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .welcome-section p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .guest-name {
+            margin-top: 30px;
+            padding: 20px 30px;
+            background: rgba(201, 169, 98, 0.1);
+            border-radius: 15px;
+            border-left: 4px solid var(--accent);
+            display: inline-block;
+        }
+
+        .guest-name span {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .guest-name h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--accent);
+            margin-top: 5px;
+        }
+
+        /* Weather Card */
+        .weather-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+            text-align: center;
+        }
+
+        .weather-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .weather-temp {
+            font-size: 56px;
+            font-weight: 300;
+            color: var(--white);
+        }
+
+        .weather-temp sup {
+            font-size: 24px;
+            color: var(--accent);
+        }
+
+        .weather-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .weather-details {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .weather-detail {
+            text-align: center;
+        }
+
+        .weather-detail i {
+            color: var(--accent);
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .weather-detail span {
+            display: block;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .weather-detail strong {
+            font-size: 16px;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            grid-column: span 3;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .action-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 35px 25px;
+            text-align: center;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(201, 169, 98, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .action-card:hover::before {
+            opacity: 1;
+        }
+
+        .action-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(201, 169, 98, 0.2);
+        }
+
+        .action-card:active {
+            transform: scale(0.95);
+        }
+
+        .action-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent), var(--gold-light));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .action-card:hover .action-icon {
+            transform: rotate(-10deg) scale(1.1);
+        }
+
+        .action-card h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .action-card p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Info Cards Row */
+        .info-row {
+            grid-column: span 3;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 35px;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+        }
+
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), var(--gold-light));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--primary);
+        }
+
+        .info-card-header h3 {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .wifi-details {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .wifi-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .wifi-item:last-child {
+            border-bottom: none;
+        }
+
+        .wifi-item span {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        .wifi-item strong {
+            color: var(--accent);
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+        }
+
+        .checkin-times {
+            display: flex;
+            gap: 20px;
+        }
+
+        .time-block {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .time-block span {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .time-block h4 {
+            font-size: 28px;
+            color: var(--accent);
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: rgba(201, 169, 98, 0.1);
+        }
+
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .contact-item div span {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .contact-item div strong {
+            display: block;
+            font-size: 16px;
+            margin-top: 3px;
+        }
+
+        /* Amenities Section */
+        .amenities-section {
+            grid-column: span 3;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 500;
+        }
+
+        .section-title span {
+            color: var(--accent);
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 20px;
+        }
+
+        .amenity-item {
+            text-align: center;
+            padding: 25px 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .amenity-item:hover {
+            background: rgba(201, 169, 98, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .amenity-item i {
+            font-size: 32px;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .amenity-item span {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 30px 40px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--accent);
+        }
+
+        .footer-divider {
+            width: 1px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 18px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 600px;
+            width: 90%;
+            border: 1px solid rgba(201, 169, 98, 0.3);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .modal-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--accent);
+        }
+
+        .modal-close {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: #e74c3c;
+        }
+
+        .modal-content {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        /* Screensaver */
+        .screensaver {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            flex-direction: column;
+        }
+
+        .screensaver.active {
+            display: flex;
+        }
+
+        .screensaver-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            color: var(--accent);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(201, 169, 98, 0.3); }
+            to { text-shadow: 0 0 40px rgba(201, 169, 98, 0.6); }
+        }
+
+        .screensaver-time {
+            font-size: 120px;
+            font-weight: 200;
+            margin-top: 30px;
+            color: var(--white);
+        }
+
+        .screensaver-text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .quick-actions {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            .amenities-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            .welcome-section {
+                grid-column: span 2;
+            }
+            .weather-card {
+                grid-column: span 2;
+            }
+            .quick-actions {
+                grid-column: span 2;
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .info-row {
+                grid-column: span 2;
+                grid-template-columns: 1fr;
+            }
+            .amenities-section {
+                grid-column: span 2;
+            }
+            .amenities-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            .datetime {
+                text-align: center;
+            }
+            .main-content {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            .welcome-section, .weather-card, .quick-actions, .info-row, .amenities-section {
+                grid-column: span 1;
+            }
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .amenities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation"></div>
+    <div class="floating-particles" id="particles"></div>
+
+    <!-- Screensaver -->
+    <div class="screensaver" id="screensaver">
+        <div class="screensaver-logo">ONE BLISS</div>
+        <div class="screensaver-time" id="screensaver-time">00:00</div>
+        <div class="screensaver-text">Tap anywhere to continue</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="logo-text">
+                <h1>ONE BLISS</h1>
+                <span>Premium Homestay</span>
+            </div>
+        </div>
+        <div class="datetime">
+            <div class="time" id="current-time">00:00</div>
+            <div class="date" id="current-date">Loading...</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div class="welcome-badge">✨ Selamat Datang</div>
+            <h2>Experience the <span>Bliss</span> of<br>Home Away from Home</h2>
+            <p>Nikmati kenyamanan dan kemewahan di ONE BLISS Homestay. Kami berkomitmen memberikan pengalaman menginap terbaik untuk Anda.</p>
+            <div class="guest-name">
+                <span>Guest Room</span>
+                <h3>Deluxe Suite #101</h3>
+            </div>
+        </section>
+
+        <!-- Weather Card -->
+        <section class="weather-card">
+            <div class="weather-icon">☀️</div>
+            <div class="weather-temp">28<sup>°C</sup></div>
+            <div class="weather-desc">Cerah Berawan</div>
+            <div class="weather-details">
+                <div class="weather-detail">
+                    <i class="fas fa-tint"></i>
+                    <strong>65%</strong>
+                    <span>Humidity</span>
+                </div>
+                <div class="weather-detail">
+                    <i class="fas fa-wind"></i>
+                    <strong>12 km/h</strong>
+                    <span>Wind</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <div class="action-card" onclick="openModal('room-service')">
+                <div class="action-icon">
+                    <i class="fas fa-concierge-bell"></i>
+                </div>
+                <h3>Room Service</h3>
+                <p>Pesan makanan & minuman</p>
+            </div>
+            <div class="action-card" onclick="openModal('housekeeping')">
+                <div class="action-icon">
+                    <i class="fas fa-broom"></i>
+                </div>
+                <h3>Housekeeping</h3>
+                <p>Layanan kebersihan</p>
+            </div>
+            <div class="action-card" onclick="openModal('info')">
+                <div class="action-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h3>Local Guide</h3>
+                <p>Tempat wisata sekitar</p>
+            </div>
+            <div class="action-card" onclick="openModal('transport')">
+                <div class="action-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h3>Transport</h3>
+                <p>Sewa kendaraan</p>
+            </div>
+            <div class="action-card" onclick="openModal('help')">
+                <div class="action-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>Bantuan</h3>
+                <p>Hubungi resepsionis</p>
+            </div>
+        </section>
+
+        <!-- Info Cards -->
+        <section class="info-row">
+            <!-- WiFi Card -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-card-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>WiFi Access</h3>
+                </div>
+                <div class="wifi-details">
+                    <div class="wifi-item">
+                        <span>Network</span>
+                        <strong>ONE_BLISS_Guest</strong>
+                    </div>
+                    <div class="wifi-item">
+                        <span>Password</span>
+                        <strong>Welcome2024</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Check-in/out Card -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Check-in & Check-out</h3>
+                </div>
+                <div class="checkin-times">
+                    <div class="time-block">
+                        <span>Check-in</span>
+                        <h4>14:00</h4>
+                    </div>
+                    <div class="time-block">
+                        <span>Check-out</span>
+                        <h4>12:00</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergency Contact -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-card-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Quick Contact</h3>
+                </div>
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <i class="fas fa-user-tie"></i>
+                        <div>
+                            <span>Resepsionis</span>
+                            <strong>Ext. 0 / 101</strong>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <span>Emergency</span>
+                            <strong>+62 812-3456-7890</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Amenities -->
+        <section class="amenities-section">
+            <div class="section-header">
+                <h2 class="section-title">Fasilitas <span>Premium</span></h2>
+            </div>
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <i class="fas fa-swimming-pool"></i>
+                    <span>Pool</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-spa"></i>
+                    <span>Spa</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>Gym</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-utensils"></i>
+                    <span>Restaurant</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-parking"></i>
+                    <span>Parking</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-tv"></i>
+                    <span>Smart TV</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-snowflake"></i>
+                    <span>AC</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-coffee"></i>
+                    <span>Mini Bar</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-left">
+            <div class="footer-logo">ONE BLISS</div>
+            <div class="footer-divider"></div>
+            <div class="footer-text">
+                Jl. Pantai Indah No. 123, Bali, Indonesia<br>
+                info@onebliss.com | +62 361-123-456
+            </div>
+        </div>
+        <div class="social-links">
+            <div class="social-link"><i class="fab fa-instagram"></i></div>
+            <div class="social-link"><i class="fab fa-facebook-f"></i></div>
+            <div class="social-link"><i class="fab fa-whatsapp"></i></div>
+            <div class="social-link"><i class="fab fa-tripadvisor"></i></div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 id="modal-title">Modal Title</h2>
+                <div class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="modal-content" id="modal-content">
+                Modal content goes here...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
+            const dateOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            
+            document.getElementById('current-time').textContent = now.toLocaleTimeString('id-ID', timeOptions);
+            document.getElementById('current-date').textContent = now.toLocaleDateString('id-ID', dateOptions);
+            document.getElementById('screensaver-time').textContent = now.toLocaleTimeString('id-ID', timeOptions);
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Modal functions
+        const modalContent = {
+            'room-service': {
+                title: '🍽️ Room Service',
+                content: `
+                    <h3>Menu Tersedia 24 Jam</h3>
+                    <p style="margin: 15px 0;">Hubungi Ext. 102 untuk memesan:</p>
+                    <ul style="margin-left: 20px; line-height: 2;">
+                        <li>Makanan Indonesia Tradisional</li>
+                        <li>Western Cuisine</li>
+                        <li>Seafood Fresh</li>
+                        <li>Beverages & Cocktails</li>
+                        <li>Healthy Options</li>
+                    </ul>
+                    <p style="margin-top: 20px; color: var(--accent);">⏰ Waktu pengantaran: 15-30 menit</p>
+                `
+            },
+            'housekeeping': {
+                title: '🧹 Housekeeping',
+                content: `
+                    <h3>Layanan Kebersihan</h3>
+                    <p style="margin: 15px 0;">Hubungi Ext. 103 untuk:</p>
+                    <ul style="margin-left: 20px; line-height: 2;">
+                        <li>Pembersihan Kamar Tambahan</li>
+                        <li>Ganti Handuk & Sprei</li>
+                        <li>Tambahan Amenities</li>
+                        <li>Laundry Service</li>
+                        <li>Turn Down Service</li>
+                    </ul>
+                `
+            },
+            'info': {
+                title: '🗺️ Local Guide',
+                content: `
+                    <h3>Tempat Wisata Sekitar</h3>
+                    <ul style="margin: 15px 0 0 20px; line-height: 2.2;">
+                        <li><strong>Pantai Indah</strong> - 5 menit jalan kaki</li>
+                        <li><strong>Pura Sunset</strong> - 10 menit berkendara</li>
+                        <li><strong>Pasar Tradisional</strong> - 15 menit berkendara</li>
+                        <li><strong>Air Terjun Tegenungan</strong> - 30 menit berkendara</li>
+                        <li><strong>Rice Terrace</strong> - 45 menit berkendara</li>
+                    </ul>
+                    <p style="margin-top: 20px;">📍 Peta tersedia di resepsionis</p>
+                `
+            },
+            'transport': {
+                title: '🚗 Transport',
+                content: `
+                    <h3>Layanan Transportasi</h3>
+                    <ul style="margin: 15px 0 0 20px; line-height: 2.2;">
+                        <li><strong>Airport Transfer</strong> - IDR 350.000</li>
+                        <li><strong>Sewa Motor</strong> - IDR 100.000/hari</li>
+                        <li><strong>Sewa Mobil + Driver</strong> - IDR 600.000/hari</li>
+                        <li><strong>Day Tour</strong> - Mulai IDR 500.000</li>
+                    </ul>
+                    <p style="margin-top: 20px; color: var(--accent);">📞 Hubungi Ext. 104 untuk reservasi</p>
+                `
+            },
+            'help': {
+                title: '📞 Bantuan',
+                content: `
+                    <h3>Kami Siap Membantu</h3>
+                    <div style="margin-top: 20px;">
+                        <p><strong>Resepsionis 24 Jam</strong></p>
+                        <p style="color: var(--accent); font-size: 20px;">Ext. 0 atau Ext. 101</p>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <p><strong>WhatsApp</strong></p>
+                        <p style="color: var(--accent); font-size: 20px;">+62 812-3456-7890</p>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <p><strong>Darurat</strong></p>
+                        <p style="color: #e74c3c; font-size: 20px;">Ext. 911</p>
+                    </div>
+                `
+            }
+        };
+
+        function openModal(type) {
+            const data = modalContent[type];
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-content').innerHTML = data.content;
+            document.getElementById('modal-overlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('active');
+        }
+
+        // Screensaver (activates after 2 minutes of inactivity)
+        let screensaverTimeout;
+        const screensaver = document.getElementById('screensaver');
+
+        function resetScreensaver() {
+            screensaver.classList.remove('active');
+            clearTimeout(screensaverTimeout);
+            screensaverTimeout = setTimeout(() => {
+                screensaver.classList.add('active');
+            }, 120000); // 2 minutes
+        }
+
+        document.addEventListener('click', resetScreensaver);
+        document.addEventListener('touchstart', resetScreensaver);
+        document.addEventListener('mousemove', resetScreensaver);
+
+        screensaver.addEventListener('click', () => {
+            screensaver.classList.remove('active');
+            resetScreensaver();
+        });
+
+        resetScreensaver();
+
+        // Keyboard shortcut to toggle screensaver (for testing)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 's') {
+                screensaver.classList.toggle('active');
+            }
+        });
+    </script>
+</body>
+</html>
